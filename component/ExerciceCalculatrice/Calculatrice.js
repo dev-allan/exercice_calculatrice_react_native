@@ -1,5 +1,6 @@
 import {View, Text, StyleSheet, Pressable, Button, TextInput} from 'react-native';
 import React, {useEffect, useState} from 'react';
+import { isEmpty, handleResult } from './utils';
 
 export const Calculatrice = () => {
   const [result, setResult] = useState();
@@ -58,6 +59,9 @@ export const Calculatrice = () => {
     }
   };
 
+  const arrayTouchNumber = ["0", "1", "2","3","4","5","6","7","8","9"];
+  const arrayToucheOperateur = ["+", "-", "/", "*"]
+
   return (
     <View style={styles.body}>
         <View style={styles.containerInput}>
@@ -65,45 +69,17 @@ export const Calculatrice = () => {
             <TextInput keyboardType="numeric" style={styles.input} placeholder='deuxieme nombre'  onChangeText={handleInput2}/>
         </View>
       <View style={styles.touch}>
-        <View style={styles.touchNumberRow}>
-          <Pressable onPress={() => handleTouch(0)}>
-            <Text style={styles.touchNumber}>0</Text>
-          </Pressable>
-          <Pressable onPress={() => handleTouch(1)}>
-            <Text style={styles.touchNumber}>1</Text>
-          </Pressable>
-          <Pressable onPress={() => handleTouch(2)}>
-            <Text style={styles.touchNumber}>2</Text>
-          </Pressable>
-        </View>
-        <View style={styles.touchNumberRow}>
-          <Pressable onPress={() => handleTouch(3)}>
-            <Text style={styles.touchNumber}>3</Text>
-          </Pressable>
-          <Pressable onPress={() => handleTouch(4)}>
-            <Text style={styles.touchNumber}>4</Text>
-          </Pressable>
-          <Pressable onPress={() => handleTouch(5)}>
-            <Text style={styles.touchNumber}>5</Text>
-          </Pressable>
-        </View>
-        <View style={styles.touchNumberRow}>
-          <Pressable onPress={() => handleTouch(6)}>
-            <Text style={styles.touchNumber}>6</Text>
-          </Pressable>
-          <Pressable onPress={() => handleTouch(7)}>
-            <Text style={styles.touchNumber}>7</Text>
-          </Pressable>
-          <Pressable onPress={() => handleTouch(8)}>
-            <Text style={styles.touchNumber}>8</Text>
-          </Pressable>
-        </View>
-        <View>
-          <Pressable
-            style={styles.touchNumberRow}
-            onPress={() => handleTouch(9)}>
-            <Text style={styles.touchNumber}>9</Text>
-          </Pressable>
+        <View style={styles.touchNumberMap}>
+        {
+          !isEmpty(arrayTouchNumber) && arrayTouchNumber.map((e, i) => {
+            return(
+            <View key={i} style={styles.touchNumber}>
+              <Pressable onPress={() => handleTouch(i)}>
+                <Text style={styles.touchNumber}>{e}</Text>
+              </Pressable>
+            </View>)
+          })
+        }
         </View>
       </View>
       <View style={styles.touchOperande}>
@@ -191,6 +167,12 @@ const styles = StyleSheet.create({
     fontSize: 21,
     margin: 20,
   },
+
+  touchNumberMap:{
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    width:300
+  }
 });
 
 export default Calculatrice;
