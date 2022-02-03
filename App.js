@@ -9,6 +9,10 @@ import FlexBox from './component/FlexBox';
 import Navbar from './component/Exercice/Navbar';
 import Sidebar from './component/Exercice/Sidebar';
 import Content from './component/Exercice/Content';
+import TouchPress from './component/TouchPress';
+import GestionInput from './component/GestionInput';
+import Alertes from './component/Alertes';
+import Calculatrice from './component/ExerciceCalculatrice/Calculatrice';
 
 // structure d'un composant fonction classique
 export const App = () => {
@@ -16,6 +20,10 @@ export const App = () => {
     // balise <View></View> qui remplace les <div></div>
     <SafeAreaView>
       <ScrollView>
+        <Calculatrice/>
+        {/* <TouchPress/> */}
+        {/* <GestionInput/> */}
+        {/* <Alertes/> */}
         {/* <View style={styles.body}> */}
         {/* les balises <Text></Text> qui remplace les balises <p></p> */}
         {/* <Text>Bienvenue, ceci est le composant APP</Text> */}
@@ -25,15 +33,15 @@ export const App = () => {
         {/* <FlatNest /> */}
         {/* <FlexBox/> */}
         {/* </View> */}
-        <Navbar />
-        <View style={styles.exerciceFlex}>
-          <View>
-            <Sidebar />
-          </View>
-          <View style={styles.content}>
-            <Content />
-          </View>
-        </View>
+        {/* <Navbar /> */}
+        {/* <View style={styles.exerciceFlex}> */}
+          {/* <View> */}
+            {/* <Sidebar /> */}
+          {/* </View> */}
+          {/* <View style={styles.content}> */}
+            {/* <Content /> */}
+          {/* </View> */}
+        {/* </View> */}
       </ScrollView>
     </SafeAreaView>
   );
@@ -44,7 +52,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   exerciceFlex: {
-    display: 'flex',
     flexDirection: 'row',
   },
   content: {
